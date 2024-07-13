@@ -4,7 +4,6 @@ import localFont from "next/font/local";
 import Image, { StaticImageData } from "next/image";
 import { FC } from "react";
 import { FaXTwitter } from "react-icons/fa6";
-import Cloud2 from "../public/TG _for website 3.png";
 import Link from "next/link";
 
 interface CloudProps {
@@ -32,15 +31,15 @@ const Cloud: FC<CloudProps> = ({ img, padding, iconPosition }) => {
   return (
     <>
       <Image
-        src={img}
         alt="Cloud"
-        height={0}
-        width={400}
         className="relative z-0"
+        height={0}
+        priority={true}
+        src={img}
         style={{
           objectFit: "contain",
         }}
-        priority={true}
+        width={400}
       />
       <Link href="#">
         <FaXTwitter
