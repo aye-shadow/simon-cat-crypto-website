@@ -1,113 +1,118 @@
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import PlanetsNight from "../public/nightt 1_LE_auto_x2.jpg";
+import PlanetsDay from "../public/dayy 1_LE_auto_x2.jpg";
+import { useTheme } from "next-themes";
+import LayerNight from "../public/Layer 1.png";
+import LayderDay from "../public/Layer 1_2.png";
+import GroundNight from "../public/Group1.png";
+import GroundDay from "../public/Group1_2.png";
+import CatPlane from "../public/paperplane1.png";
+import localFont from "next/font/local";
+import Cloud1 from "../public/TG _for website 2.png";
+import Cloud2 from "../public/TG _for website 3.png";
+import { Mulish } from "next/font/google";
+import Cloud from "@/components/cloud";
+
+const CatComic = localFont({
+  src: [
+    {
+      path: "../public/cat_comic/Cat Comic.ttf",
+      weight: "400",
+    },
+  ],
+  variable: "--font-cat-comic",
+});
+
+const mulish = Mulish({
+  weight: "400",
+  subsets: ["latin"],
+});
 
 export default function Home() {
+  const { theme, systemTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null; // Prevents SSR issues
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
+  const PlanetsType = currentTheme === "light" ? PlanetsDay : PlanetsNight;
+  const GroundType = currentTheme === "light" ? GroundDay : GroundNight;
+  const LayerType = currentTheme === "light" ? LayderDay : LayerNight;
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
+    <>
+      <section
+        id="planetsImages"
+        className="relative w-full pt-40 sm:pt-44 h-fit"
+      >
         <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
+          src={PlanetsType}
+          alt="Background"
+          className="w-full z-0"
+          fill={true}
+          style={{
+            objectFit: "cover",
+            objectPosition: "center top",
+          }}
+          priority={true}
         />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+        <div className="px-20">
+          <div
+            className="relative w-full z-20 text-center sm:text-left"
+            style={{ maxWidth: "800px" }}
+          >
+            <p className="uppercase text-white text-shadow font-bold mb-5">
+              welcome to simon cat offical token
+            </p>
+            <h1
+              className={`text-white uppercase text-5xl sm:text-7xl md:text-8xl text-shadow ${CatComic.className}`}
+            >
+              one cat, billions of owners'
+            </h1>
+          </div>
+          <div className="flex w-full justify-end items-center relative z-10 -mt-3 xs:-mt-20 sm:-mt-32 md:-mt-[22rem]">
+            <Image
+              src={CatPlane}
+              alt="Cat on Paper Plane"
+              className="w-half"
+              priority={true}
+            />
+          </div>
+        </div>
+        <div className="px-5 sm:px-20 relative">
+          <div id="cloud1" className="relative w-fit">
+            <Cloud
+              img={Cloud1}
+              padding="pl-9 pr-6 xs:pr-14 pt-5 xs:pt-14 pb-20 xs:pb-24"
+              iconPosition="top-10 right-24 xxs:right-28 xs:right-32"
+            />
+          </div>
+          <div id="cloud2" className="relative w-full flex justify-end -mt-16">
+            <div className="w-fit relative">
+              <Cloud
+                img={Cloud2}
+                padding="pb-14 xs:pb-20 pt-16 xs:pt-28 pl-8 pr-10 xs:pr-12"
+                iconPosition="top-24 xs:top-28 right-20 xxs:right-28"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="statsAndFooterImage" className="w-full relative">
+        <Image src={LayerType} alt="Layer" className='h-200' priority={true} style={{objectFit: 'cover'}} />
+        <Image
+          src={GroundType}
+          alt="Ground"
+          className="absolute bottom-0 left-0 w-full"
+          priority={true}
+        />
+      </section>
+    </>
   );
 }
