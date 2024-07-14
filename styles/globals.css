@@ -5,3 +5,33 @@
 .text-shadow {
     text-shadow: -1px 0 black, 1px -1px 0 black, -1px 1px 0 black, 1px 1px 0 black
 }
+
+.grid-container {
+    grid-template-areas: 
+      "first second third";
+}
+  
+.item1 { grid-area: first; }
+.item2 { grid-area: second; }
+.item3 { grid-area: third; }
+
+@media (max-width: 768px) {
+    .grid-container {
+        grid-template-areas: 
+        "second"
+        "first"
+        "third";
+    }
+
+    .item1 {
+        order: 2;
+    }
+
+    .item2 {
+        order: 1;
+    }
+
+    .item3 {
+        order: 3;
+    }
+}

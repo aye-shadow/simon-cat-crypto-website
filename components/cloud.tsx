@@ -2,15 +2,8 @@ import React from "react";
 import { Mulish } from "next/font/google";
 import localFont from "next/font/local";
 import Image, { StaticImageData } from "next/image";
-import { FC } from "react";
 import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
-
-interface CloudProps {
-  img: StaticImageData;
-  padding: string;
-  iconPosition: string;
-}
 
 const CatComic = localFont({
   src: [
@@ -27,15 +20,23 @@ const mulish = Mulish({
   subsets: ["latin"],
 });
 
-const Cloud: FC<CloudProps> = ({ img, padding, iconPosition }) => {
+interface CloudProps {
+  img: StaticImageData;
+  padding: string;
+  iconPosition: string;
+  heading: string;
+  desc: string;
+}
+
+const Cloud = (props: CloudProps) => {
   return (
-    <>
+    <div className="w-fit relative">
       <Image
         alt="Cloud"
         className="relative z-0"
         height={0}
         priority={true}
-        src={img}
+        src={props.img}
         style={{
           objectFit: "contain",
         }}
@@ -43,24 +44,24 @@ const Cloud: FC<CloudProps> = ({ img, padding, iconPosition }) => {
       />
       <Link href="#">
         <FaXTwitter
-          className={`text-black absolute z-20 text-2xl ${iconPosition}`}
+          className={`text-black absolute z-20 text-2xl ${props.iconPosition}`}
         />
       </Link>
       <div
-        className={`absolute top-0 left-0 z-10 text-black w-full h-full flex items-center ${padding}`}
+        className={`absolute top-0 left-0 z-10 text-black w-full h-full flex items-center ${props.padding}`}
       >
-        <div className="p-4">
+        <div className="p-3">
           <h2
-            className={`${CatComic.className} capitalize text-lg sm:text-2xl`}
+            className={`${CatComic.className} capitalize text-[150%]`}
           >
-            floki
+            {props.heading}
           </h2>
-          <p className={`${mulish.className} text-sm sm:text-lg`}>
-            We need a small description here
+          <p className={`${mulish.className} text-[100%]`}>
+            {props.desc}
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

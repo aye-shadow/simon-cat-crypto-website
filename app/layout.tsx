@@ -1,6 +1,5 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
-import clsx from "clsx";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
@@ -35,18 +34,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning={true}>
       <head />
-      <body className="relative w-full h-fit">
+      <body className="relative w-full">
         <Providers themeProps={{ attribute: "class", defaultTheme: "light" }}>
           <FullNavbar />
-          <div
-            className={clsx(
-              "min-h-screen bg-background font-sans antialiased",
-              fontSans.variable,
-            )}
-          >
-            <main>{children}</main>
-            <Footer />
-          </div>
+          <main>{children}</main>
+          <Footer />
         </Providers>
       </body>
     </html>
