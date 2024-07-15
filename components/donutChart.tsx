@@ -22,18 +22,16 @@ const DonutChart = () => {
     "#a55af1",
   ];
 
-
   return (
     <>
       <div className="h-fit w-full relative z-10">
-        
         <div className="w-full h-fit flex justify-center items-center">
-          <PieChart width={200} height={200}>
+          <PieChart height={200} width={200}>
             <Pie
               data={data}
+              dataKey="value"
               innerRadius={40}
               outerRadius={90}
-              dataKey="value"
               stroke="none"
             >
               {data.map((entry, index) => (

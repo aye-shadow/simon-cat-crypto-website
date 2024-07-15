@@ -2,8 +2,8 @@ import React from "react";
 import { Mulish } from "next/font/google";
 import localFont from "next/font/local";
 import Image, { StaticImageData } from "next/image";
-import { FaXTwitter } from "react-icons/fa6";
 import Link from "next/link";
+import { FaXTwitter } from "react-icons/fa6";
 
 const CatComic = localFont({
   src: [
@@ -51,14 +51,10 @@ const Cloud = (props: CloudProps) => {
         className={`absolute top-0 left-0 z-10 text-black w-full h-full flex items-center ${props.padding}`}
       >
         <div className="p-3">
-          <h2
-            className={`${CatComic.className} capitalize text-[150%]`}
-          >
+          <h2 className={`${CatComic.className} capitalize text-[150%]`}>
             {props.heading}
           </h2>
-          <p className={`${mulish.className} text-[100%]`}>
-            {props.desc}
-          </p>
+          <p className={`${mulish.className} text-[100%]`}>{props.desc}</p>
         </div>
       </div>
     </div>

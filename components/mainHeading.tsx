@@ -11,9 +11,7 @@ const CatComic = localFont({
   variable: "--font-cat-comic",
 });
 
-type type =
-  | "large"
-  | "small";
+type type = "large" | "small";
 
 interface MainHeadingProps {
   text: string;
@@ -23,7 +21,7 @@ interface MainHeadingProps {
 const MainHeading = (props: MainHeadingProps) => {
   return (
     <h1
-      className={`text-white relative z-10 uppercase ${props.type === 'large' ? 'text-5xl sm:text-7xl md:text-8xl' : 'text-4xl text-center'} text-shadow ${CatComic.className}`}
+      className={`text-white relative z-10 uppercase ${props.type === "large" ? "text-5xl sm:text-7xl md:text-8xl" : "text-4xl text-center"} text-shadow ${CatComic.className}`}
     >
       {props.text}
     </h1>

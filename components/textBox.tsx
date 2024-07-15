@@ -1,24 +1,32 @@
 import React from "react";
 
+type colour = "cyan" | "blue" | "red";
+
 interface TextBoxProps {
   title: string;
-  colour: string;
+  colour: colour;
   bullets: string[];
 }
 
-const TextBox = (props: TextBoxProps) => {
+const TextBox = ({ title, colour, bullets }: TextBoxProps) => {
+  const colourDict = {
+    cyan: "#00a2bc",
+    red: "#d8575f",
+    blue: "#4ecdc6",
+  };
+
   return (
     <>
-      <h3 className="font-bold text-xl" style={{ color: `${props.colour}` }}>
-        {props.title}
+      <h3 className="font-bold text-xl" style={{ color: colour }}>
+        {title}
       </h3>
       <ul className="coloured-markers relative list-inside list-disc">
         <style jsx>{`
           li::marker {
-            color: ${props.colour};
+            color: ${colourDict[colour]};
           }
         `}</style>
-        {props.bullets.map((bullet, index) => (
+        {bullets.map((bullet, index) => (
           <li key={index}>{bullet}</li>
         ))}
       </ul>

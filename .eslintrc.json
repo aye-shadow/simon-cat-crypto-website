@@ -38,6 +38,20 @@
     "no-unused-vars": "off",
     "unused-imports/no-unused-vars": "off",
     "unused-imports/no-unused-imports": "warn",
+    "react/no-unknown-property": [
+      2,
+      {
+        "ignore": [
+          "jsx"
+        ]
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "@typescript-eslint/no-unused-vars": [
       "warn",
       {

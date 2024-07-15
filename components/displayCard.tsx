@@ -10,7 +10,13 @@ import LightOLeaf from "../public/Vector64.png";
 import PurpleLeaf from "../public/Vector65.png";
 import PinkLeaf from "../public/Vector66.png";
 
-// Define a type for the valid colors
+interface DisplayCardProps {
+  colour: LeafColor;
+  title: string;
+  text: string;
+  percent: number;
+}
+
 type LeafColor =
   | "green"
   | "yellow"
@@ -20,24 +26,7 @@ type LeafColor =
   | "purple"
   | "pink";
 
-interface DisplayCardProps {
-  colour: LeafColor;
-  title: string;
-  text: string;
-  percent: number;
-}
-
-const DisplayCard = (props: DisplayCardProps) => {
-  const dict = {
-    green: GreenLeaf,
-    yellow: YellowLeaf,
-    orange: OrangeLeaf,
-    red: RedLeaf,
-    lightOrange: LightOLeaf,
-    purple: PurpleLeaf,
-    pink: PinkLeaf,
-  } as const;
-
+const DisplayCard = ({ colour, title, text, percent }: DisplayCardProps) => {
   const colourDict = {
     green: "#9cd48a",
     yellow: "#f9d284",
@@ -46,6 +35,16 @@ const DisplayCard = (props: DisplayCardProps) => {
     lightOrange: "#ffb462",
     purple: "#6c61f1",
     pink: "#a55af1",
+  };
+
+  const dict = {
+    green: GreenLeaf,
+    yellow: YellowLeaf,
+    orange: OrangeLeaf,
+    red: RedLeaf,
+    lightOrange: LightOLeaf,
+    purple: PurpleLeaf,
+    pink: PinkLeaf,
   };
 
   const { theme, systemTheme } = useTheme();
@@ -61,24 +60,28 @@ const DisplayCard = (props: DisplayCardProps) => {
 
   return (
     <section
-      className={`border ${currentTheme === 'light' ? 'border-black' : ''} rounded-lg w-full relative py-3 px-5`}
-      style={{ background: `rgba(255, 255, 255, ${currentTheme === 'light' ? '1' : '0.1'})` }}
+      className={`border${currentTheme === "light" ? "border-black" : ""} rounded-lg w-full relative py-3 px-5`}
+      style={{
+        background: `rgba(255,255,255,${currentTheme === "light" ? "1" : "0.1"})`,
+      }}
     >
       <Image
-        src={dict[props.colour]}
-        alt={`${props.colour} leaf`}
+        alt={`${colour} leaf`}
         className="absolute -top-3 -left-3"
+        height={50}
+        src={dict[colour]}
+        width={50}
       />
       <div className="flex">
         <div className="flex-grow text-sm">
-          <h2 className="font-semibold">{props.title}</h2>
-          <p>{props.text}</p>
+          <h2 className="font-semibold">{title}</h2>
+          <p>{text}</p>
         </div>
         <p
-          style={{ color: `${colourDict[props.colour]}` }}
           className="font-bold text-right text-xl self-center"
+          style={{ color: colourDict[colour] }}
         >
-          {props.percent}%
+          {percent}%
         </p>
       </div>
     </section>
